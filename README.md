@@ -1,7 +1,7 @@
-# TODO
+# Future Tasks
 - Replace self.classify() with equivalent segmentation()
 - Prune unused code from main branch after completion of all goals.
-
+# ----------------------------
 
 # Perception Deployment via ROS
 Designed by: Adams Anaglo, Bryant Har, Mihir Mishra, Sia Chitnis, Eric Marchetti
