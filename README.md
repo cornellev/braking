@@ -1,10 +1,5 @@
-# Perception Deployment via ROS
+# Real Time Segmentation via ROS
 Designed by: Adams Anaglo, Bryant Har, Mihir Mishra, Sia Chitnis, Eric Marchetti
-
-# Future Tasks
-- Replace self.classify() with equivalent segmentation()
-- Prune unused code from main branch after completion of all goals.
-
 
 - [Summary and Outcomes](#summary-and-outcomes-)
 - [Terminology](#terminology-)
@@ -14,6 +9,11 @@ Designed by: Adams Anaglo, Bryant Har, Mihir Mishra, Sia Chitnis, Eric Marchetti
 - [Performance](#performance-)
 - [Future Work/Updates](#future-work-)
 - [Reflection](#reflection-)
+
+
+### Future Tasks
+- Replace self.classify() with equivalent segmentation()
+- Prune unused code from main branch after completion of all goals.
 
 ## Summary and Outcomes <a name=“summary-and-outcomes”></a>
 Spring 2022: Developed a ROS package to deploy computer vision/perception algorithms. The ROS package processes images from the ZED Camera stream and feeds them into a classifier network which outputs the detections.
