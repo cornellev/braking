@@ -1,39 +1,10 @@
-import pyzed.sl as sl
-import math
 import numpy as np
-import sys
-import math
 import cv2
-import time
-import matplotlib.pyplot as plt
 import rospy
+from cv_bridge import CvBridge
 from std_msgs.msg import Boolean
 
-def runrun():
-
-    pub = rospy.Publisher('AEB', Boolean, queue_size=1)
-    rospy.init_node('AEB_sender', anonymous=True)
-
-    depthsub = rospy.Subscriber("/zed/zed_node/depth/depth_registered", 1, callback)
-
-    r = rospy.Rate(10)
-
-def callback(data):
-    if data is not None:
-        depth_nparr = data
-        depth_masked = depthmask(depth_nparr)
-        x = determine_stop(depth_masked)
-        if x:
-            pub.publish(True)
-        else:
-            pub.publish(False)
-        r.sleep()
-    else:
-        pub.publish(False)
-        r.sleep()
-
-    
-
+cv_bridge = CvBridge()
 
 PYDEVD_DISABLE_FILE_VALIDATION=1
 STOPPING_DISTANCE = 100 #mm
@@ -44,6 +15,18 @@ CAMERA_VFOV=54 #degrees
 CAMERA_VRES = 720 #pixels
 CAMERA_HEIGHT = 100 #mm
 
+def depth_callback(data):
+    mat = cv_bridge.imgmsg_to_cv2(data, desired_encoding = 'passthrough')
+    depth_nparr = np.array(mat, dtype=np.float32)
+    depth_masked = depthmask(depth_nparr)
+    pub.publish(determine_stop(depth_masked))
+    rate.sleep()
+
+def runrun():
+    rospy.init_node('AEB_sender', anonymous=True)
+    pub = rospy.Publisher('AEB', Boolean, queue_size=1)
+    depthsub = rospy.Subscriber("/zed/zed_node/depth/depth_registered", Image, depth_callback, 1)
+    r = rospy.Rate(10)
 
 def depthmask(nparr):
     nanless = np.nan_to_num(nparr)
