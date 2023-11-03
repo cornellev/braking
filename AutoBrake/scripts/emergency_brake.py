@@ -2,31 +2,37 @@ import numpy as np
 import cv2
 import rospy
 from cv_bridge import CvBridge
-from std_msgs.msg import Boolean
+from std_msgs.msg import Bool
+from sensor_msgs.msg import Image
 
 cv_bridge = CvBridge()
 
 PYDEVD_DISABLE_FILE_VALIDATION=1
-STOPPING_DISTANCE = 100 #mm
-MAXIMUM_DISTANCE = 50000 #mm
-MINIMUM_DISTANCE = 1 #mm
+STOPPING_DISTANCE = 10 #cm
+MAXIMUM_DISTANCE = 5000 #cm
+MINIMUM_DISTANCE = 1 #cm
 MINAREA = 800 #pixels
 CAMERA_VFOV=54 #degrees
 CAMERA_VRES = 720 #pixels
-CAMERA_HEIGHT = 100 #mm
+CAMERA_HEIGHT = 10 #cm
+bridge = CvBridge()
 
 def depth_callback(data):
-    mat = cv_bridge.imgmsg_to_cv2(data, desired_encoding = 'passthrough')
+    #print(MINAREA)
+    mat = bridge.imgmsg_to_cv2(data, desired_encoding = 'passthrough')
+    # print(mat)
+    # it=1
+    # while 1:
+    #     print("11")
+    #     if it==1:
+    #         cv2.imshow("image", mat)
+    #         cv2.waitKey()
+    #         it=0
+    #     print(it)
+
     depth_nparr = np.array(mat, dtype=np.float32)
     depth_masked = depthmask(depth_nparr)
-    pub.publish(determine_stop(depth_masked))
-    rate.sleep()
-
-def runrun():
-    rospy.init_node('AEB_sender', anonymous=True)
-    pub = rospy.Publisher('AEB', Boolean, queue_size=1)
-    depthsub = rospy.Subscriber("/zed/zed_node/depth/depth_registered", Image, depth_callback, 1)
-    r = rospy.Rate(10)
+    pub.publish(determine_stop(depth_masked))    
 
 def depthmask(nparr):
     nanless = np.nan_to_num(nparr)
@@ -62,6 +68,15 @@ def determine_stop(arr):
                 return True
         return False
 
-if __name__ == '__Main__':
-    runrun()
+if __name__ == '__main__':
+    while 1:
+        try:
+            #print("1")
+            #print("2")
+            rospy.init_node('AEB_sender', anonymous=True)
+            pub = rospy.Publisher('AEB', Bool, queue_size=1)
+            depthsub = rospy.Subscriber("/zed/zed_node/depth/depth_registered", Image, depth_callback)
+            rospy.spin()
+        except rospy.ROSInterruptException:
+            pass
 
