@@ -8,13 +8,13 @@ from sensor_msgs.msg import Image
 cv_bridge = CvBridge()
 
 PYDEVD_DISABLE_FILE_VALIDATION=1
-STOPPING_DISTANCE = 10 #cm
-MAXIMUM_DISTANCE = 5000 #cm
-MINIMUM_DISTANCE = 1 #cm
+STOPPING_DISTANCE = 1 #m
+MAXIMUM_DISTANCE = 70 #m
+MINIMUM_DISTANCE = .5 #m
 MINAREA = 800 #pixels
 CAMERA_VFOV=54 #degrees
 CAMERA_VRES = 720 #pixels
-CAMERA_HEIGHT = 10 #cm
+CAMERA_HEIGHT = .2 #m
 bridge = CvBridge()
 
 def depth_callback(data):
