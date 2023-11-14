@@ -32,7 +32,7 @@ def determine_stop(arr):
 if __name__ == '__main__':
     try:
         rospy.init_node('AEBLidar_sender', anonymous=True)
-        pub = rospy.Publisher('AEBLidar', Bool, queue_size=1)
+        pub = rospy.Publisher('AEBlidar', Bool, queue_size=1)
         depthsub = rospy.Subscriber("/scan", LaserScan, depth_callback)
         rospy.spin()
     except rospy.ROSInterruptException:
