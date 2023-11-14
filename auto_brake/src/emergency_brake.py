@@ -74,7 +74,7 @@ if __name__ == '__main__':
             #print("1")
             #print("2")
             rospy.init_node('AEB_sender', anonymous=True)
-            pub = rospy.Publisher('AEB', Bool, queue_size=1)
+            pub = rospy.Publisher('AEBzed', Bool, queue_size=1)
             depthsub = rospy.Subscriber("/zed/zed_node/depth/depth_registered", Image, depth_callback)
             rospy.spin()
         except rospy.ROSInterruptException:
