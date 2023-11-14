@@ -1,4 +1,4 @@
 <launch>
-  <node name="Ebrake" pkg="auto_brake" type="emergency_brake.py" output="screen"/>
+  <node name="AEBzed" pkg="auto_brake" type="emergency_brake.py" output="screen"/>
 </launch>
 
