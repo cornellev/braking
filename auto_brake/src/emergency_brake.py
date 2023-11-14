@@ -73,7 +73,7 @@ if __name__ == '__main__':
         try:
             #print("1")
             #print("2")
-            rospy.init_node('AEB_sender', anonymous=True)
+            rospy.init_node('AEBzed', anonymous=True)
             pub = rospy.Publisher('AEBzed', Bool, queue_size=1)
             depthsub = rospy.Subscriber("/zed/zed_node/depth/depth_registered", Image, depth_callback)
             rospy.spin()
