@@ -7,17 +7,14 @@ This repo contains two packages that implement AEB using a Zed camera (auto_brak
 **How to run**
 
 *auto_brake*
-1. Source directory with ```$source devel/setup.bash```
-2. Start roscore with ```$roscore```
-3. Start Zed_wrapper with ```$rosrun zed_wrapper zed_wrapper_node```
-4. Stat zed_brake node with ```$roslaunch lidar_brake emergency_brake.launch```
+1. Start roscore in a terminal with ```$roscore```
+2. In a new terminal cd into this directory
+3. Run '''./run_zed_brake_system.sh'''
 
 *lidar_brake*
-1. Source directory with ```$source devel/setup.bash```
-2. Start roscore with ```$roscore```
-3. Run ```$sudo chmod 666 /dev/ttyUSB0```
-4. Start rplidar with ```$roslaunch rplidar_ros rplidar_a1.launch```
-5. Stat lidar_brake node with ```$roslaunch lidar_brake emergency_brake.launch```
+1. Start roscore in a terminal with ```$roscore```
+2. In a new terminal cd into this directory
+3. Run '''./run_lidar_brake_system.sh'''
 
 **Topics published**
 
