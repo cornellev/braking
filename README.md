@@ -8,13 +8,19 @@ This repo contains two packages that implement AEB using a Zed camera (auto_brak
 
 *auto_brake*
 1. Start roscore in a terminal with ```$roscore```
-2. In a new terminal cd into this directory
+2. In a new terminal cd into catkin_ws
 3. Run '''./run_zed_brake_system.sh'''
 
 *lidar_brake*
 1. Start roscore in a terminal with ```$roscore```
-2. In a new terminal cd into this directory
+2. In a new terminal cd into catkin_ws
 3. Run '''./run_lidar_brake_system.sh'''
+
+*joy_control*
+1. Start roscore in a terminal with ```$roscore```
+2. In a new terminal cd into catkin_ws
+3. Run '''source devel/setup.bash'''
+4. Run '''rosrun joy joy_node'''
 
 **Topics published**
 
