@@ -1,0 +1,4 @@
+<launch>
+  <node name="AEBlidar" pkg="lidar_brake" type="emergency_brake.py" output="screen"/>
+</launch>
+

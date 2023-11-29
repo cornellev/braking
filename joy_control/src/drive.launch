@@ -1,0 +1,4 @@
+<launch>
+  <node name="joyride" pkg="joy_control" type="drive.py" output="screen"/>
+</launch>
+
